@@ -1,0 +1,124 @@
+# Use Xft?
+use_xft yes
+xftfont AvantGarde LT ExtraLight:size=8
+xftalpha 0.8
+text_buffer_size 2048
+
+# Update interval in seconds
+update_interval 1
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+own_window_transparent yes
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 182 0
+maximum_width 202
+
+# Draw shades?
+draw_shades no
+default_color ffffff #4D4D4D
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 0
+
+# border margins
+border_margin 5
+draw_graph_borders no
+# border width
+border_width 0
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 25
+gap_y 40
+
+#	Distric-Thin			fonts
+#	Blue Highway
+#	Raleway
+#	Zekton
+#	Calibri
+#	Engebrechtre
+#	Opeln2001
+#	AvantGarde LT ExtraLight
+#	AvantGarde LT ExtraLight
+
+# -- Lua Load -- #
+lua_load ~/.draw_bg.lua
+#	lua_draw_hook_pre draw_bg
+
+imlib_cache_size 0
+
+
+TEXT
+${lua conky_draw_bg}
+${alignc}${image ~/.conky/logo.png -p 44,20 160x160}
+
+
+
+
+
+
+
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}______________________________
+${font AvantGarde LT ExtraLight:pixelsize=120}${alignc}${time %H}${font}
+${font AvantGarde LT ExtraLight:pixelsize=120}${alignc}${color #FBAA35}${time %M}${font}
+${voffset 30}${font AvantGarde LT ExtraLight:pixelsize=40}${alignc}${color #ffffff}${time %b %Y}${font}
+${voffset 15}${font AvantGarde LT ExtraLight:pixelsize=25}${alignc}${color #ffffff}${time %A %d}
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}______________________________
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}DETAILS
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}USER: ${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${nodename}
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}DISTRO:  ${pre_exec cat /etc/issue.net}
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}KERNEL: ${kernel} 
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}ARCH: $machine
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}UPTIME: $uptime  
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}______________________________
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}SYSTEM
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}CPU1: ${cpu cpu0}${color #FBAA35}% | ${color #ffffff}CPU2: ${cpu cpu1}${color #FBAA35}%
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}CPU3: ${cpu cpu2}${color #FBAA35}% | ${color #ffffff}CPU4: ${cpu cpu3}${color #FBAA35}%
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}RAM: ${mem}
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}PROCESSES: $processes ($running_processes running)
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}______________________________
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}TEMP
+${font AvantGarde LT ExtraLight:pixelsize=10}${color #ffffff}CPU TEMP0: ${alignr}${execp sensors coretemp-isa-0000 | grep 'Core 0' | cut -c16-17} ${color #FBAA35}°C${color #ffffff} / ${color #ffffff}105${color #FBAA35} °C$color
+${font AvantGarde LT ExtraLight:pixelsize=10}${color #ffffff}CPU TEMP1: ${alignr}${execp sensors coretemp-isa-0000 | grep 'Core 2' | cut -c16-17} ${color #FBAA35}°C${color #ffffff} / ${color #ffffff}105${color #FBAA35} °C$color
+${font AvantGarde LT ExtraLight:pixelsize=10}${color #ffffff}MOTHERBD TEMP: ${alignr}${exec sensors it8721-isa-0a10 | grep 'temp1' | cut -c16-17} ${color #FBAA35}°C${color #ffffff} / ${color #ffffff}80${color #FBAA35} °C$color
+${font AvantGarde LT ExtraLight:pixelsize=10}${color #ffffff}HD-DISK TEMP:${alignr}${exec hddtemp /dev/sda -n --unit=C}${color #FBAA35} °C${color #ffffff} / ${color #ffffff}70${color #FBAA35} °C$color
+${font AvantGarde LT ExtraLight:pixelsize=10}${color #ffffff}TEMP2: ${alignr}${exec sensors it8721-isa-0a10 | grep 'temp2' | cut -c16-17} ${color #FBAA35}°C${color #ffffff} / ${color #ffffff}127${color #FBAA35} °C$color
+${font AvantGarde LT ExtraLight:pixelsize=10}${color #ffffff}TEMP3: ${alignr}${exec sensors it8721-isa-0a10 | grep 'temp3' | cut -c16-17} ${color #FBAA35}°C${color #ffffff} / ${color #ffffff}127${color #FBAA35} °C$color
+${font AvantGarde LT ExtraLight:pixelsize=10}${color #ffffff}FAN: ${alignr}${exec sensors it8721-isa-0a10 | grep 'fan1' | cut -c12-18}${font}${color #FBAA35}  RPM${font}
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}______________________________
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}DATA
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}Dl: ${downspeed eth0} kb/s ${downspeedgraph eth0 4,80 000000 000000}
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}Ul: ${upspeed eth0} kb/s ${upspeedgraph eth0 4,80 000000 000000}
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}TOTAL DL ${totaldown eth0} 
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}TOTAL UL ${totalup eth0}
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}${color #ffffff}______________________________
+${font AvantGarde LT ExtraLight:pixelsize=10}${alignc}NOW PLAYING
+
+${if_running audacious}${execpi 3 ~/.conky/shell-scripts/audacious-info.sh}
+${image ~/.conky/img.png -p ,4 -s 112x114}${endif}
+
+
+
+

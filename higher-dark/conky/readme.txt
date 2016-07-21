@@ -1,0 +1,1 @@
+Placer les fichiers .conkyrc et .conky d'un thème conky et les placer dans le répertoire personnel
