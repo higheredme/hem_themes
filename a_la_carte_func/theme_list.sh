@@ -1,6 +1,35 @@
 #!/bin/bash
 
 # functions #
+installOB()
+{
+
+}
+
+installGTK3()
+{
+
+}
+installConky()
+{
+
+}
+
+installTaskBar()
+{
+
+}
+
+installWallPaper()
+{
+
+}
+
+installIconTheme()
+{
+
+}
+
 selectThemeFromList()
 {
   # We create directory .themes if it doesn't exist
@@ -31,21 +60,29 @@ selectThemeFromList()
   choice=$[choice-1]
   selection=${themes[$choice]}
   echo " You have picked Theme :" $selection
+
   items=($(ls $selection))
   for i in ${!items[@]}; do
+
   type=${items[$i]}
-  echo $type
   case $type in
     "conky")
-      echo "conky";;
+      echo "conky"
+      installConky
+      ;;
     "openbox-3")
-      echo "openbox";;
+      echo "openbox"
+      installOB
+      ;;
     "taskbar")
-      echo "task-bar";;
+      echo "task-bar"
+      installTaskBar;;
     "wallpaper")
       echo "wallpaper";;
     "gtk-3")
       echo "gtk 3";;
+    "icons")
+      echo "icons";;
   esac
   done
 }
