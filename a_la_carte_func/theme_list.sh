@@ -24,7 +24,8 @@ installWallPaper()
 {
 	wDir="$TDIR/$1/wallpaper"
   path="$wDir/$(ls $wDir)"
-	echo $pat
+  sed -i '5s/.*/wallpaper=('$path')/' $HOME/.config/pcmanfm/lubuntu/desktop-items-0.conf
+	#echo $path
 }
 
 installIconTheme()
