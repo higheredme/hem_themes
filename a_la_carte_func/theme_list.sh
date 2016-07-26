@@ -3,31 +3,33 @@
 # functions #
 installOB()
 {
-
+	echo $TDIR/$1/openbox-3
 }
 
 installGTK3()
 {
-
+	echo $TDIR/$1/gtk-3
 }
 installConky()
 {
-
+	echo $TDIR/$1/conky
 }
 
 installTaskBar()
 {
-
+	echo $TDIR/$1/taskbar
 }
 
 installWallPaper()
 {
-
+	wDir="$TDIR/$1/wallpaper"
+  path="$wDir/$(ls $wDir)"
+	echo $pat
 }
 
 installIconTheme()
 {
-
+	echo  $TDIR/$1
 }
 
 selectThemeFromList()
@@ -42,14 +44,15 @@ selectThemeFromList()
   # We generate multiple choice depending on themes in git hub repo
   # Getting repo from github
   cd ~/.themes
-  git clone git@github.com:higheredme/hem_themes.git
-  cp -r hem_themes/Themes/* .
-  rm -rf hem_themes
+  # git clone git@github.com:higheredme/hem_themes.git
+  #cp -r hem_themes/Themes/* .
+  #rm -rf hem_themes
 
   # multi choice from folder
   i=0
   themes=($(ls))
   clear
+  echo "this dir" $thisDir
   echo "Choose a theme"
   for index in ${!themes[@]}; do
     textGreen $[i+1]") ${themes[$i]}"
@@ -68,21 +71,28 @@ selectThemeFromList()
   case $type in
     "conky")
       echo "conky"
-      installConky
+      installConky $selection
       ;;
     "openbox-3")
       echo "openbox"
-      installOB
+      installOB $selection
       ;;
     "taskbar")
       echo "task-bar"
-      installTaskBar;;
+      installTaskBar $selection
+      ;;
     "wallpaper")
-      echo "wallpaper";;
+      echo "wallpaper"
+      installWallPaper $selection
+      ;;
     "gtk-3")
-      echo "gtk 3";;
+      echo "gtk 3"
+      installGTK3 $selection
+      ;;
     "icons")
-      echo "icons";;
+      echo "icons"
+      installIconTheme $selection
+      ;;
   esac
   done
 }

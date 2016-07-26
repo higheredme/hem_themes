@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # Alias #
-DIR="a_la_carte_func"
-. $DIR/functions.sh
-. $DIR/theme_list.sh
-. $DIR/custom_theme.sh
+CDIR="a_la_carte_func"
+. $CDIR/functions.sh
+. $CDIR/theme_list.sh
+. $CDIR/custom_theme.sh
+
+TDIR="$HOME/.themes"
+DIR=$(pwd -P)
 
 # Functions #
 displayChoice()
