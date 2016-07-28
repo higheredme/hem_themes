@@ -12,7 +12,29 @@ installGTK3()
 }
 installConky()
 {
-	echo $TDIR/$1/conky
+ # /home/bruno/.config/lxsession/Lubuntu
+  autopath="$HOME/.config/lxsession/Lubuntu/autostart"
+  filepath="$TDIR/$1/conky/.conkyrc"
+  folderpath="$TDIR/$1/conky/.conky"
+  grep -r --include "*" "@conky" $autopath
+  OUT=$?
+  echo $OUT
+  if [ $OUT -eq 0 ]; then
+    sed -i '5s|.*|@confy|' $autopath
+  fi
+
+  ls $filepath
+  OUT=$?
+  if [ $OUT -eq  0 ]; then
+    cp $filepath $HOME
+  conky -d
+  fi
+
+  ls $folderpath
+  OUT=$?
+  if [ $OUT -eq  0 ]; then
+    cp $folderpath $HOME
+  fi
 }
 
 installTaskBar()
@@ -24,7 +46,7 @@ installWallPaper()
 {
 	wDir="$TDIR/$1/wallpaper"
   path="$wDir/$(ls $wDir)"
-  sed -i '5s/.*/wallpaper=('$path')/' $HOME/.config/pcmanfm/lubuntu/desktop-items-0.conf
+  sed -i '5s|.*|wallpaper='$path'|' $HOME/.config/pcmanfm/lubuntu/desktop-items-0.conf
 	#echo $path
 }
 
@@ -96,4 +118,6 @@ selectThemeFromList()
       ;;
   esac
   done
+
+  lxpanel --profile pcmanfm
 }
