@@ -27,14 +27,14 @@ installConky()
   OUT=$?
   if [ $OUT -eq  0 ]; then
     cp $filepath $HOME
-  conky -d
+    ls $folderpath
+    OUT=$?
+    if [ $OUT -eq  0 ]; then
+      cp $folderpath $HOME
+    fi
+#  conky -d
   fi
 
-  ls $folderpath
-  OUT=$?
-  if [ $OUT -eq  0 ]; then
-    cp $folderpath $HOME
-  fi
 }
 
 installTaskBar()
@@ -67,7 +67,7 @@ selectThemeFromList()
   # We generate multiple choice depending on themes in git hub repo
   # Getting repo from github
   cd ~/.themes
-  # git clone git@github.com:higheredme/hem_themes.git
+ #  git clone git@github.com:higheredme/hem_themes.git
   #cp -r hem_themes/Themes/* .
   #rm -rf hem_themes
 
@@ -118,6 +118,6 @@ selectThemeFromList()
       ;;
   esac
   done
-
-  lxpanel --profile pcmanfm
+lxpanel --profile pcmanfm
+  #pcmanfm --desktop
 }
